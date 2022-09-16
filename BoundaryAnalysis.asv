@@ -282,9 +282,11 @@ for bNum=1:5
 
     % solve for Burgers vector
     refLineVector = line_vector_xyz'; % reference line vector
-    refInPlaneVector = v1; % in-plane vector calculated above
-    BurgersCandidate = cross(refLineVector,refInPlaneVector)'; % save ref normal vector
-    Boundary(bNum).DislocationBurgersCandidate_xyz = BurgersCandidate; % save candidate Burgers vector
+    refNormVector = Boundary()
+    v1=temp(:,1)'; % save in-plane X
+    v2=temp(:,2)'; % save in-plane Y
+    v3 = refVector; % save ref normal vector
+    Boundary(bNum).DislocationBurgersCandidate_xyz = v1; % save candidate Burgers vector
     Boundary(bNum).DislocationBurgersCandidate_uvw = TransformBasis * Boundary(bNum).DislocationBurgersCandidate_xyz;
     Boundary(bNum).DislocationBurgersCandidate_hkl = 1./Boundary(bNum).DislocationBurgersCandidate_uvw; 
     Boundary(bNum).DislocationBurgersCandidate_hkl(Boundary(bNum).DislocationBurgersCandidate_hkl==Inf) = 0;
